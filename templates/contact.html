@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Contact
+{% endblock %}
+
+{% block main %}
+<section id="contact">
+    <!-- Heading -->
+    <div class="container contact-header text-center">
+        <h2>Contact Us</h2>
+        <p>Have questions or feedback? Reach out to us!</p>
+    </div>
+    <!-- Main -->
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row">
+            <!-- Contact Information -->
+            <div class="col-12 contact-col">
+                <h3>Contact Information</h3>
+                <p><strong>Email:</strong> info@quackercart.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Quacker Street, Duckville, QCD 12345</p>
+            </div>
+            <!-- Contact Form -->
+            <div class="col-12 contact-col">
+                <h3>Contact Form</h3>
+                <!-- Alert Message -->
+                {% if alert_message %}
+                <div id="alertContainer" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ alert_message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                <!-- Form -->
+                <form action="/contact" method="post">
+                    <!-- Name -->
+                    <div class="row mb-3">
+                        <label for="name" class="col-sm-2 col-form-label">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" name="name" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="row mb-3">
+                        <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" name="email" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <!-- Message -->
+                    <div class="row mb-3">
+                        <label for="message" class="col-sm-2 col-form-label">Message:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <div class="row">
+                        <div class="col-sm-10 offset-sm-2">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

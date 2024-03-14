@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block main %}
+<div class="container d-flex flex-column justify-content-center align-items-center" id="checkout">
+    <h2 class="container-heading">Checkout</h2>
+    <!-- Alert Message -->
+    {% if alert_message %}
+      <div id="alertContainer" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ alert_message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+
+    <form action="/checkout" method="post">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Duck Norris" autocomplete="off" required>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input class="form-control" id="address" name="address" placeholder="123 Quacker Street" autocomplete="off" required></input>
+        </div>
+
+        <!-- Card Number -->
+        <div class="form-group">
+          <label for="card_number">Card Number:</label>
+          <input type="text" class="form-control" id="card_number" name="card_number" placeholder="**** **** **** ****" autocomplete="off" required>
+        </div>
+
+        <!-- Card Name -->
+        <div class="form-group">
+          <label for="card_name">Card Name:</label>
+          <input type="text" class="form-control" id="card_name" name="card_name" placeholder="Duck Norris" autocomplete="off" required>
+        </div>
+
+        <!-- Expiration Date -->
+        <div class="form-group">
+            <label for="expiration_date">Expiration Date:</label>
+            <input type="text" class="form-control datepicker" id="expiration_date" name="expiration_date" placeholder="MM/YYYY" autocomplete="off" required>
+        </div>
+
+      <!-- CVV -->
+        <div class="form-group">
+            <label for="cvv">CVV:</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="****" autocomplete="off" required>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="checkout-btn">Checkout</button>
+    </form>
+</div>
+{% endblock %}

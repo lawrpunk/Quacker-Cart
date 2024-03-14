@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block main %}
+<div class="container" id="cart">
+    <h2 class="container-heading">Your Shopping Cart</h2>
+    <!-- Cart Table -->
+    <table class="table cart-table">
+        <thead>
+            <tr>
+                <th class="th-cart-product">Product</th>
+                <th class="text-center th-cart-quantity">Quantity</th>
+                <th class="text-center th-cart-price">Price</th>
+                <th class="text-center th-cart-total">Total</th>
+                <th class="text-center th-cart-action">Action</th>
+                <th class="text-center th-cart-remove">Remove</th>
+            </tr>
+        </thead>
+        <tbody class="cart-body">
+            {% for product in cart %}
+            <!-- Product Row -->
+            <tr id="product-row-{{ product['id'] }}">
+                <!-- Product Image and Title -->
+                <td class="align-middle">
+                    <div class="d-flex align-items-center flex-row cart-product-img">
+                         <a class="cart-product-link" href="{{ url_for('product', product_id=product['id']) }}">
+                            <img src="{{ product['image'] }}">
+                         </a>
+                         <a class="cart-product-link cart-prodcut-link-text" href="{{ url_for('product', product_id=product['id']) }}">
+                            <p>{{ product['title'] }}</p>
+                         </a>
+                    </div>
+                </td>
+                <!-- Product Quantity -->
+                <td class="text-center align-middle td-cart-quantity-l" id="quantity-{{ product['id'] }}">
+                    {{ product['quantity'] }}
+                </td>
+                <!-- Product Mobile Quantity -->
+                <td class="text-center align-middle td-cart-quantity-s">
+                    <button onclick="increaseQuantity('{{ product['id'] }}')">+</button>
+                    <span class="td-cart-quantity-text" id="mobile-quantity-{{ product['id'] }}"> {{ product['quantity'] }} </span>
+                    <button onclick="decreaseQuantity('{{ product['id'] }}')">-</button>
+                </td>
+                <!-- Product Price -->
+                <td class="text-center align-middle td-cart-price">${{ product['price'] }}</td>
+                <!-- Product Total -->
+                <td class="text-center align-middle td-cart-total" id="total-{{ product['id'] }}">
+                    ${{ product['quantity'] * product['price'] }}
+                </td>
+                <!-- Product Action Buttons -->
+                <td class="text-center align-middle td-cart-action">
+                    <button onclick="increaseQuantity('{{ product['id'] }}')">+</button>
+                    <button onclick="decreaseQuantity('{{ product['id'] }}')">-</button>
+                </td>
+                <!-- Product Remove Button -->
+                <td class="text-center align-middle td-cart-remove">
+                    <button onclick="removeFromCart('{{ product['id'] }}')"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Total Price -->
+    <p class="cart-total-text">Total: <span id="cart-total">${{ total }}</span></p>
+    <!-- Checkout Button -->
+    <div class="cart-total-btn">
+        <a class="cart-button" href="/checkout">Checkout</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Success
+{% endblock %}
+
+
+{% block main %}
+<div class="container success-container d-flex justify-content-center align-items-center text-center">
+    <img class="success-logo" src="/static/images/logo-favicon.svg" alt="Logo">
+    <h1 class="success-heading">{{ alert_message }}</h1>
+</div>
+{% endblock %}
