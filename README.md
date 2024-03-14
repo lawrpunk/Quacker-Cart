@@ -1,5 +1,4 @@
 # Quacker Cart
-#### Video Demo: [https://www.youtube.com/watch?v=no5BzEAm49w]
 
 #### Description
 
